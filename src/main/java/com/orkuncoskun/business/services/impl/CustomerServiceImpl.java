@@ -57,11 +57,14 @@ public class CustomerServiceImpl implements CustomerServices {
         CustomerDto customerDto = EntityToDto(customer);//model
         return ResponseEntity.ok(customerDto);
     }
-
+    
     //SAVE
     // http://localhost:8080/api/v1/customers
     @PostMapping("/customers")
     public CustomerDto createCustomers(@RequestBody CustomerDto customerDto) { //@RequestBody
+//    	if (customerDto.getCreditScore()  < 500) {
+//           System.out.println("Customer has been rejected due to a low credit score.");
+//        }
         CustomerEntity customerEntity = DtoToEntity(customerDto);//ModelMapper
         customerRepository.save(customerEntity);
         return customerDto;
@@ -94,6 +97,7 @@ public class CustomerServiceImpl implements CustomerServices {
         customer.setIdentityNumber( customerEntity.getIdentityNumber());
         customer.setName( customerEntity.getName());
         customer.setSurname(customerEntity.getSurname());
+        customer.setCreditScore(customerEntity.getCreditScore());
         customer.setMonthlyIncome(customerEntity.getMonthlyIncome());
         customer.setPhoneNumber(customerEntity.getPhoneNumber());
         customer.setDateOfBirth(customerEntity.getDateOfBirth());

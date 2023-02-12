@@ -8,7 +8,6 @@ import lombok.extern.log4j.Log4j2;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Data
@@ -24,6 +23,8 @@ public class CustomerEntity extends BaseEntity implements Serializable {
     private String name;
     @Column(name = "surname")
     private String surname;
+    @Column(name = "credit_score")
+    private Double creditScore;
     @Column(name = "monthly_income")
     private Double monthlyIncome;
     @Column(name = "phone_number")
@@ -31,10 +32,11 @@ public class CustomerEntity extends BaseEntity implements Serializable {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    public CustomerEntity(String identityNumber, String name, String surname, Double monthlyIncome, String phoneNumber, LocalDate dateOfBirth) {
+    public CustomerEntity(String identityNumber, String name, String surname,Double creditScore, Double monthlyIncome, String phoneNumber, LocalDate dateOfBirth) {
         this.identityNumber = identityNumber;
         this.name = name;
         this.surname = surname;
+        this.creditScore = creditScore;
         this.monthlyIncome = monthlyIncome;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
