@@ -1,8 +1,12 @@
 package com.orkuncoskun.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,39 +16,61 @@ import com.orkuncoskun.data.entity.CustomerEntity;
 import com.orkuncoskun.data.repository.CustomerRepository;
 
 @RestController
-@RequestMapping("/credit-application")
+@RequestMapping("/api/v1")
 public class CreditApplicationController {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+	@Autowired
+	private CustomerRepository customerRepository;
 
-    @PostMapping("/apply/{customerId}")
-    public ResponseEntity<String> applyForCredit(@PathVariable Long customerId) {
-        CustomerEntity customer = customerRepository.findById(customerId).orElse(null);
-        if (customer == null) {
-            return new ResponseEntity<>("Customer not found with id: " + customerId, HttpStatus.NOT_FOUND);
-        }
+	@GetMapping("/apply/{customerId}")
+	public ResponseEntity<Map<String, Object>> applyForCredit(@PathVariable Long customerId) {
+	    CustomerEntity customer = customerRepository.findById(customerId).orElse(null);
+	    if (customer == null) {
+	        Map<String, Object> response = new HashMap<>();
+	        response.put("message", "Customer not found with id: " + customerId);
+	        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+	    }
 
-        double creditScore = customer.getCreditScore();
-        double monthlyIncome = customer.getMonthlyIncome();
-        int creditLimitMultiplier = 4;
+	    double creditScore = customer.getCreditScore();
+	    double monthlyIncome = customer.getMonthlyIncome();
+	    int creditLimitMultiplier = 4;
 
-        if (creditScore < 500) {
-            return new ResponseEntity<>("Credit score is below 500, credit application rejected for customer with id: " + customerId + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.BAD_REQUEST);
-        } else if (creditScore >= 500 && creditScore < 1000) {
-            if (monthlyIncome < 5000) {
-                return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of 10000 TL." + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.OK);
-            } else if (monthlyIncome >= 5000 && monthlyIncome < 10000) {
-                return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of 20000 TL." + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.OK);
-            } else if (monthlyIncome >= 10000) {
-                double limit = monthlyIncome * creditLimitMultiplier / 2;
-                return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of " + limit + " TL." + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.OK);
-            }
-        } else if (creditScore >= 1000) {
-        	double limit = monthlyIncome * creditLimitMultiplier;
-            return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of " + limit + " TL." + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.OK);
-        }
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("customerId", customerId);
+	    response.put("phoneNumber", customer.getPhoneNumber());
 
-        return new ResponseEntity<>("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+	    if (creditScore < 500) {
+	        response.put("status", "REJECTED");
+	        response.put("message", "Credit score is below 500, credit application rejected.");
+	        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	    } else if (creditScore >= 500 && creditScore < 1000) {
+	        if (monthlyIncome < 5000) {
+	            response.put("status", "APPROVED");
+	            response.put("message", "Credit application approved and assigned limit of 10000 TL.");
+	            response.put("limit", 10000);
+	            return new ResponseEntity<>(response, HttpStatus.OK);
+	        } else if (monthlyIncome >= 5000 && monthlyIncome < 10000) {
+	            response.put("status", "APPROVED");
+	            response.put("message", "Credit application approved and assigned limit of 20000 TL.");
+	            response.put("limit", 20000);
+	            return new ResponseEntity<>(response, HttpStatus.OK);
+	        } else if (monthlyIncome >= 10000) {
+	            double limit = monthlyIncome * creditLimitMultiplier / 2;
+	            response.put("status", "APPROVED");
+	            response.put("message", "Credit application approved and assigned limit of " + limit + " TL.");
+	            response.put("limit", limit);
+	            return new ResponseEntity<>(response, HttpStatus.OK);
+	        }
+	    } else if (creditScore >= 1000) {
+	        double limit = monthlyIncome * creditLimitMultiplier;
+	        response.put("status", "APPROVED");
+	        response.put("message", "Credit application approved and assigned limit of " + limit + " TL.");
+	        response.put("limit", limit);
+	        return new ResponseEntity<>(response, HttpStatus.OK);
+	    }
+
+	    response.put("status", "INTERNAL_ERROR");
+	    response.put("message", "Something went wrong.");
+	    return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
