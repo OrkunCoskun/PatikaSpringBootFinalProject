@@ -30,19 +30,19 @@ public class CreditApplicationController {
         int creditLimitMultiplier = 4;
 
         if (creditScore < 500) {
-            return new ResponseEntity<>("Credit score is below 500, credit application rejected for customer with id: " + customerId, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Credit score is below 500, credit application rejected for customer with id: " + customerId + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.BAD_REQUEST);
         } else if (creditScore >= 500 && creditScore < 1000) {
             if (monthlyIncome < 5000) {
-                return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of 10000 TL.", HttpStatus.OK);
+                return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of 10000 TL." + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.OK);
             } else if (monthlyIncome >= 5000 && monthlyIncome < 10000) {
-                return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of 20000 TL.", HttpStatus.OK);
+                return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of 20000 TL." + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.OK);
             } else if (monthlyIncome >= 10000) {
                 double limit = monthlyIncome * creditLimitMultiplier / 2;
-                return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of " + limit + " TL.", HttpStatus.OK);
+                return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of " + limit + " TL." + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.OK);
             }
         } else if (creditScore >= 1000) {
         	double limit = monthlyIncome * creditLimitMultiplier;
-            return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of " + limit + " TL.", HttpStatus.OK);
+            return new ResponseEntity<>("Credit application approved for customer with id: " + customerId + " and assigned limit of " + limit + " TL." + "\nSMS sent to " + customer.getPhoneNumber(), HttpStatus.OK);
         }
 
         return new ResponseEntity<>("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);

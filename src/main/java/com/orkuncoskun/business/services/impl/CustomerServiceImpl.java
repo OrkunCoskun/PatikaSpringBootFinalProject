@@ -61,10 +61,7 @@ public class CustomerServiceImpl implements CustomerServices {
     //SAVE
     // http://localhost:8080/api/v1/customers
     @PostMapping("/customers")
-    public CustomerDto createCustomers(@RequestBody CustomerDto customerDto) { //@RequestBody
-//    	if (customerDto.getCreditScore()  < 500) {
-//           System.out.println("Customer has been rejected due to a low credit score.");
-//        }
+    public CustomerDto createCustomers(@RequestBody CustomerDto customerDto) {
         CustomerEntity customerEntity = DtoToEntity(customerDto);//ModelMapper
         customerRepository.save(customerEntity);
         return customerDto;
