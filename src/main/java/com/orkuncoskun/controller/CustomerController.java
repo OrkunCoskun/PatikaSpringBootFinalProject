@@ -86,6 +86,7 @@ public class CustomerController {
 		return mv;
 	}
 
+	// http://localhost:8080/api/v1/addCustomerForm
 	@GetMapping("/addCustomerForm")
 	public ModelAndView addnewCustomersView() {
 		ModelAndView mv = new ModelAndView("add-customers");
@@ -94,6 +95,7 @@ public class CustomerController {
 		return mv;
 	}
 
+	// http://localhost:8080/api/v1/saveCustomer
 	@PostMapping(value = "/saveCustomer")
 	public ModelAndView saveCustomerView(@ModelAttribute CustomerEntity customer) {
 		ModelAndView mv = new ModelAndView();
@@ -104,6 +106,7 @@ public class CustomerController {
 		return mv;
 	}
 
+	// http://localhost:8080/api/v1/updateCustomer/1
 	@GetMapping(value = "/updateCustomer")
 	public ModelAndView updateCustomer(@RequestParam long customerId) {
 		ModelAndView mv = new ModelAndView("update-customers");
@@ -112,7 +115,7 @@ public class CustomerController {
 		return mv;
 	}
 
-	// !!!!!!!!!!!!!!!!!!!There is an error it does not update the customer
+	// http://localhost:8080/api/v1/updateNewCustomer
 	@PostMapping(value = "updateNewCustomer")
 	public ModelAndView updateNewCustomer(@ModelAttribute CustomerEntity customer) {
 		ModelAndView mv = new ModelAndView();
@@ -123,6 +126,7 @@ public class CustomerController {
 		return mv;
 	}
 
+	// http://localhost:8080/api/v1/deleteCustomer/1
 	@GetMapping(value = "/deleteCustomer")
 	public ModelAndView deleteCustomerView(@RequestParam long customerId) throws Throwable {
 		ModelAndView mv = new ModelAndView("list-customers");
