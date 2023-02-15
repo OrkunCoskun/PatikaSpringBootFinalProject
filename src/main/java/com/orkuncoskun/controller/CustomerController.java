@@ -95,7 +95,6 @@ public class CustomerController {
 		return mv;
 	}
 
-	// http://localhost:8080/api/v1/saveCustomer
 	@PostMapping(value = "/saveCustomer")
 	public ModelAndView saveCustomerView(@ModelAttribute CustomerEntity customer) {
 		ModelAndView mv = new ModelAndView();
@@ -106,7 +105,7 @@ public class CustomerController {
 		return mv;
 	}
 
-	// http://localhost:8080/api/v1/updateCustomer/1
+	// http://localhost:8080/api/v1/updateCustomer?customerId=1
 	@GetMapping(value = "/updateCustomer")
 	public ModelAndView updateCustomer(@RequestParam long customerId) {
 		ModelAndView mv = new ModelAndView("update-customers");
@@ -115,7 +114,6 @@ public class CustomerController {
 		return mv;
 	}
 
-	// http://localhost:8080/api/v1/updateNewCustomer
 	@PostMapping(value = "updateNewCustomer")
 	public ModelAndView updateNewCustomer(@ModelAttribute CustomerEntity customer) {
 		ModelAndView mv = new ModelAndView();
@@ -126,7 +124,7 @@ public class CustomerController {
 		return mv;
 	}
 
-	// http://localhost:8080/api/v1/deleteCustomer/1
+	// http://localhost:8080/api/v1/deleteCustomer?customerId=1
 	@GetMapping(value = "/deleteCustomer")
 	public ModelAndView deleteCustomerView(@RequestParam long customerId) throws Throwable {
 		ModelAndView mv = new ModelAndView("list-customers");
