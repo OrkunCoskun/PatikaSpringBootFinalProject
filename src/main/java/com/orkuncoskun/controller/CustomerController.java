@@ -1,20 +1,16 @@
 package com.orkuncoskun.controller;
 
-import com.orkuncoskun.business.dto.CustomerDto;
 import com.orkuncoskun.business.services.CustomerServices;
 import com.orkuncoskun.data.entity.CustomerEntity;
 import com.orkuncoskun.data.repository.CustomerRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
