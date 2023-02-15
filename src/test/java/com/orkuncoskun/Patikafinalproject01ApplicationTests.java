@@ -48,8 +48,8 @@ class Patikafinalproject01ApplicationTests implements TestCrud{
                 .build();
 		customerRepository.save(customerEntity);
 
-        //nesne null ise assertionError hatasını göndersin
-        //1. kayda göre verileri getir
+		//send assertionError if object is null 
+		//fetch data based on first record
         assertNotNull(customerRepository.findById(1L).get());
 		
 	}
@@ -60,7 +60,7 @@ class Patikafinalproject01ApplicationTests implements TestCrud{
     public void testList() {
         List<CustomerEntity> list = customerRepository.findAll();
 
-        //eğer Sıfırdan büyükse liste vardır
+        //if greater than zero the list exists
         assertThat(list).size().isGreaterThan(0);
     }
 
@@ -70,7 +70,7 @@ class Patikafinalproject01ApplicationTests implements TestCrud{
     public void testFindById() {
     	CustomerEntity customerEntity = customerRepository.findById(1L).get();
 
-        //Orkun adında kayıt var mı yok mu
+        //Is there a record named Orkun?
         assertEquals("Orkun", customerEntity.getName());
     }
 
@@ -81,7 +81,7 @@ class Patikafinalproject01ApplicationTests implements TestCrud{
     	CustomerEntity customerEntity = customerRepository.findById(1L).get();
     	customerEntity.setName("Orkun55");
         customerRepository.save(customerEntity);
-        //Eşit değilse bir sorun olmayacak ama eşitse exception fırlatsın
+        //If it's not equal, it won't be a problem, but if it's equal, throw an exception.
         assertNotEquals("Orkun", customerRepository.findById(1L).get().getName());
     }
 
