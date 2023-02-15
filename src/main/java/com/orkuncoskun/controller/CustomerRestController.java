@@ -33,6 +33,8 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerRepository customerRepository;
 
+	//APPLY FOR CREDIT
+	//http://localhost:8080/api/v1/apply/1
 	@GetMapping("/apply/{customerId}")
 	public ResponseEntity<Map<String, Object>> applyForCredit(@PathVariable Long customerId) {
 	    CustomerEntity customer = customerRepository.findById(customerId).orElse(null);
