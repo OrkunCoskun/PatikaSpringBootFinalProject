@@ -7,11 +7,13 @@ import com.orkuncoskun.data.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping({ "/api/v1", "/" })
@@ -22,11 +24,11 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerRepository customerRepository;
-	
+
 	@GetMapping("/apply")
 	public ModelAndView apply(@RequestParam("customerId") @PathVariable Long customerId, Model model) {
-	    model.addAttribute("customerId", customerId);
-	    ModelAndView mv = new ModelAndView("credit-result");
+		model.addAttribute("customerId", customerId);
+		ModelAndView mv = new ModelAndView("credit-result");
 		CustomerEntity customer = customerRepository.findById(customerId).orElse(null);
 
 		if (customer == null) {
@@ -96,12 +98,16 @@ public class CustomerController {
 	}
 
 	@PostMapping(value = "/saveCustomer")
-	public ModelAndView saveCustomerView(@ModelAttribute CustomerEntity customer) {
+	public ModelAndView saveCustomerView(@Valid @ModelAttribute("customer") CustomerEntity customer, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("list-customers");
-		customerRepository.save(customer);
-		mv.addObject("customers", customerServices.getAllCustomers());
-
+		mv.addObject("customer", customer);
+		if (result.hasErrors())
+			mv.setViewName("add-customers");
+		else {
+			mv.setViewName("list-customers");
+			customerRepository.save(customer);
+			mv.addObject("customers", customerServices.getAllCustomers());
+		}
 		return mv;
 	}
 

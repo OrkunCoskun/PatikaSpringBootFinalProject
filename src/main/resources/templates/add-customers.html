@@ -2,28 +2,62 @@
 
 <head>
 	<title>Add Customer</title>
-	<link rel="stylesheet" 
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
-	crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 
 <body>
 	<div class="container">
 		<h2>Add Customer</h2>
-		<hr/>
+		<hr />
 		<form th:action="@{/api/v1/saveCustomer}" th:object="${customer}" method="post">
-			<input type="text" th:field="*{name}" placeholder="Enter name" class="form-control col-4 mb-4">
-			<input type="text" th:field="*{surname}" placeholder="Enter surname" class="form-control col-4 mb-4">
-			<input type="text" th:field="*{identityNumber}" placeholder="Enter identity number" class="form-control col-4 mb-4">
-			<input type="text" th:field="*{monthlyIncome}" placeholder="Enter monthly income" class="form-control col-4 mb-4">
-			<input type="text" th:field="*{phoneNumber}" placeholder="Enter phone number" class="form-control col-4 mb-4">
-			<input type="text" th:field="*{dateOfBirth}" placeholder="Enter date of birth" class="form-control col-4 mb-4">
-			<input type="text" th:field="*{creditScore}" placeholder="Enter the credit score" class="form-control col-4 mb-4">
-			<button class="btn btn-primary" type="submit">Save</button>
-			<input type="hidden" th:field="*{id}"/>
+
+			<table>
+				<tr>
+					<td>Customer Name: </td>
+					<td><input type="text" th:field="*{name}" class="form-control mb-2 mt-2">
+					</td>
+					<td th:errors="*{name}" class="error"></td>
+				</tr>
+				<tr>
+					<td>Customer Surname: </td>
+					<td><input type="text" th:field="*{surname}" class="form-control mb-2 mt-2"></td>
+					<td th:errors="*{surname}" class="error"></td>
+				</tr>
+				<tr>
+					<td>Customer Identity Number: </td>
+					<td><input type="text" th:field="*{identityNumber}" class="form-control mb-2 mt-2"></td>
+					<td th:errors="*{identityNumber}" class="error"></td>
+				</tr>
+				<tr>
+					<td>Customer Monthly Income: </td>
+					<td><input type="text" th:field="*{monthlyIncome}" class="form-control mb-2 mt-2"></td>
+					<td th:errors="*{monthlyIncome}" class="error"></td>
+				</tr>
+				<tr>
+					<td>Customer Phone Number: </td>
+					<td><input type="text" th:field="*{phoneNumber}" class="form-control mb-2 mt-2"></td>
+					<td th:errors="*{phoneNumber}" class="error"></td>
+				</tr>
+				<tr>
+					<td>Customer Date of Birth: </td>
+					<td><input type="text" th:field="*{dateOfBirth}" class="form-control mb-2 mt-2"></td>
+					<td th:errors="*{dateOfBirth}" class="error"></td>
+				</tr>
+				<tr>
+					<td>Customer Credit Score: </td>
+					<td><input type="text" th:field="*{creditScore}" class="form-control mb-2 mt-2"></td>
+					<td th:errors="*{creditScore}" class="error"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><button class="btn btn-primary" type="submit">Save</button></td>
+				</tr>
+			</table>
 		</form>
-		<hr/>
+		<hr />
 		<a th:href="@{/api/v1/list}">Back to list</a>
 	</div>
 </body>
