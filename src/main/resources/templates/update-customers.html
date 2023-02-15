@@ -10,45 +10,53 @@
 <body>
 	<div class="updateContainerDetail">
 		<div class="container">
+			<h2>Update Customer</h2>
+			<hr />
 			<form action="/api/v1/updateNewCustomer" method="post" th:object="${customer}">
 				<table>
 					<tr>
 						<input type="hidden" th:field="*{id}" />
 					</tr>
 					<tr>
+						<td>Customer Name: </td>
 						<td>
-							<input type="text" th:field="*{identityNumber}">
+							<input type="text" th:field="*{name}" class="form-control mb-2">
 						</td>
 					</tr>
 					<tr>
+						<td>Customer Surname: </td>
 						<td>
-							<input type="text" th:field="*{name}">
+							<input type="text" th:field="*{surname}" class="form-control mb-2">
 						</td>
 					</tr>
 					<tr>
+						<td>Identity Number: </td>
 						<td>
-							<input type="text" th:field="*{surname}">
+							<input type="text" th:field="*{identityNumber}" class="form-control mb-2">
 						</td>
 					</tr>
 					<tr>
+						<td>Customer Monthly Income: </td>
 						<td>
-							<input type="text" th:field="*{creditScore}">
-
+							<input type="text" th:field="*{monthlyIncome}" class="form-control mb-2">
 						</td>
 					</tr>
 					<tr>
+						<td>Customer Phone Number: </td>
 						<td>
-							<input type="text" th:field="*{monthlyIncome}">
+							<input type="text" th:field="*{phoneNumber}" class="form-control mb-2">
 						</td>
 					</tr>
 					<tr>
+						<td>Customer Date of Birth: </td>
 						<td>
-							<input type="text" th:field="*{phoneNumber}">
+							<input type="text" th:field="*{dateOfBirth}" class="form-control mb-2">
 						</td>
 					</tr>
 					<tr>
+						<td>Customer Credit Score: </td>
 						<td>
-							<input type="text" th:field="*{dateOfBirth}">
+							<input type="text" th:field="*{creditScore}" class="form-control mb-2">
 						</td>
 					</tr>
 					<tr>
