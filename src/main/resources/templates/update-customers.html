@@ -1,0 +1,63 @@
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+	<title>Customers</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="updateContainerDetail">
+		<div class="container">
+			<form action="/api/v1/updateNewCustomer" method="post" th:object="${customer}">
+				<table>
+					<tr>
+						<input type="hidden" th:field="*{id}" />
+					</tr>
+					<tr>
+						<td>
+							<input type="text" th:field="*{identityNumber}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" th:field="*{name}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" th:field="*{surname}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" th:field="*{creditScore}">
+
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" th:field="*{monthlyIncome}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" th:field="*{phoneNumber}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" th:field="*{dateOfBirth}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-primary" type="submit">Update</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+</body>
+
+</html>

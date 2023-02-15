@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Credit Result</title>
+	<link rel="stylesheet" 
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+	crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">  
+		<h2>Credit Application Result</h2>
+		<hr />
+		<table class="table table-bordered table-striped" id="customer-table"> 
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Status</th>
+					<th>Message</th>
+					<th>Limit</th>
+					<th>Phone Number</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${customerId}"></td>
+					<td th:text="${status}"></td>
+					<td th:text="${message}"></td>
+					<td th:text="${limit}"></td>
+					<td th:text="${phoneNumber}"></td>
+				</tr>
+			</tbody>
+		</table >
+		<hr/>
+		<a th:href="@{/api/v1/list}">Back to list</a>
+</body>
