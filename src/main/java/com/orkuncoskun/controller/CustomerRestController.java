@@ -44,9 +44,9 @@ public class CustomerRestController {
 	        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 	    }
 
-	    double creditScore = customer.getCreditScore();
-	    double monthlyIncome = customer.getMonthlyIncome();
-	    int creditLimitMultiplier = 4;
+	    Integer creditScore = customer.getCreditScore();
+	    Integer monthlyIncome = customer.getMonthlyIncome();
+	    Integer creditLimitMultiplier = 4;
 
 	    Map<String, Object> response = new HashMap<>();
 	    response.put("customerId", customerId);
@@ -68,14 +68,14 @@ public class CustomerRestController {
 	            response.put("limit", 20000);
 	            return new ResponseEntity<>(response, HttpStatus.OK);
 	        } else if (monthlyIncome >= 10000) {
-	            double limit = monthlyIncome * creditLimitMultiplier / 2;
+	        	Integer limit = monthlyIncome * creditLimitMultiplier / 2;
 	            response.put("status", "APPROVED");
 	            response.put("message", "Credit application approved and assigned limit of " + limit + " TL.");
 	            response.put("limit", limit);
 	            return new ResponseEntity<>(response, HttpStatus.OK);
 	        }
 	    } else if (creditScore >= 1000) {
-	        double limit = monthlyIncome * creditLimitMultiplier;
+	    	Integer limit = monthlyIncome * creditLimitMultiplier;
 	        response.put("status", "APPROVED");
 	        response.put("message", "Credit application approved and assigned limit of " + limit + " TL.");
 	        response.put("limit", limit);

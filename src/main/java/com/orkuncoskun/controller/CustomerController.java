@@ -35,9 +35,9 @@ public class CustomerController {
 			return mv;
 		}
 
-		double creditScore = customer.getCreditScore();
-		double monthlyIncome = customer.getMonthlyIncome();
-		int creditLimitMultiplier = 4;
+		Integer creditScore = customer.getCreditScore();
+		Integer monthlyIncome = customer.getMonthlyIncome();
+		Integer creditLimitMultiplier = 4;
 
 		mv.addObject("customerId", customerId);
 		mv.addObject("phoneNumber", customer.getPhoneNumber());
@@ -58,14 +58,14 @@ public class CustomerController {
 				mv.addObject("limit", 20000);
 				return mv;
 			} else if (monthlyIncome >= 10000) {
-				double limit = monthlyIncome * creditLimitMultiplier / 2;
+				Integer limit = monthlyIncome * creditLimitMultiplier / 2;
 				mv.addObject("status", "APPROVED");
 				mv.addObject("message", "Credit application approved and assigned limit of " + limit + " TL.");
 				mv.addObject("limit", limit);
 				return mv;
 			}
 		} else if (creditScore >= 1000) {
-			double limit = monthlyIncome * creditLimitMultiplier;
+			Integer limit = monthlyIncome * creditLimitMultiplier;
 			mv.addObject("status", "APPROVED");
 			mv.addObject("message", "Credit application approved and assigned limit of " + limit + " TL.");
 			mv.addObject("limit", limit);

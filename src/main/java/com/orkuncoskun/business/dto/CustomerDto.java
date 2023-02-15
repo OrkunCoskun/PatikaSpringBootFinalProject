@@ -21,8 +21,8 @@ public class CustomerDto {
     private String identityNumber;
     private String name;
     private String surname;
-    private Double creditScore;
-    private Double monthlyIncome;
+    private Integer creditScore;
+    private Integer monthlyIncome;
     private String phoneNumber;
     private LocalDate dateOfBirth;
 }

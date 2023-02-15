@@ -41,8 +41,8 @@ class Patikafinalproject01ApplicationTests implements TestCrud{
                 .identityNumber("26716775988")
                 .name("Orkun")
                 .surname("Coskun ")
-                .creditScore(400.0)
-                .monthlyIncome(6000.0)
+                .creditScore(400)
+                .monthlyIncome(6000)
                 .phoneNumber("05310816566")
                 .dateOfBirth(dateOfBirth)
                 .build();

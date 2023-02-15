@@ -24,15 +24,15 @@ public class CustomerEntity extends BaseEntity implements Serializable {
     @Column(name = "surname")
     private String surname;
     @Column(name = "credit_score")
-    private Double creditScore;
+    private Integer creditScore;
     @Column(name = "monthly_income")
-    private Double monthlyIncome;
+    private Integer monthlyIncome;
     @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    public CustomerEntity(String identityNumber, String name, String surname,Double creditScore, Double monthlyIncome, String phoneNumber, LocalDate dateOfBirth) {
+    public CustomerEntity(String identityNumber, String name, String surname,Integer creditScore, Integer monthlyIncome, String phoneNumber, LocalDate dateOfBirth) {
         this.identityNumber = identityNumber;
         this.name = name;
         this.surname = surname;
