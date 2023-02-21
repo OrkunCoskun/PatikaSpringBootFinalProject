@@ -23,7 +23,7 @@ import com.orkuncoskun.data.entity.CustomerEntity;
 import com.orkuncoskun.data.repository.CustomerRepository;
 
 @RestController
-@RequestMapping({ "/api/v1", "/" })
+@RequestMapping("/api/v1")
 @CrossOrigin(origins = "http://localhost:3000")
 public class CustomerRestController {
 

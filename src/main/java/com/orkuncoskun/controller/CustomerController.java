@@ -13,10 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @Controller
-@RequestMapping({ "/api/v1", "/" })
+@RequestMapping({"/api/v1", "/" })
 @CrossOrigin(origins = "http://localhost:3000")
 public class CustomerController {
 	@Autowired
