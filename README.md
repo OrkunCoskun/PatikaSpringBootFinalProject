@@ -6,6 +6,7 @@
 - Spring Data (Jpa Hibernate, MySQL)
 - Spring Rest (http status)
 - Thymeleaf
+- Swagger (OpenAPI)
 
 ---
 ### Rules
@@ -79,6 +80,10 @@ http://localhost:8080/api/v1/customers/1
 //APPLY FOR CREDIT
 http://localhost:8080/api/v1/apply/1
 ```
+
+# Swagger UI
+
+![swagger](src/main/resources/static/img/Swagger.png)
 
 # Postman Output Images
 
