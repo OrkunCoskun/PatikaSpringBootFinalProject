@@ -1,4 +1,5 @@
 # Credit Application System
+##### Backend
 - Java 17
 - Spring Framework
 - Spring Boot
@@ -7,6 +8,13 @@
 - Spring Rest (http status)
 - Thymeleaf
 - Swagger (OpenAPI)
+- Jquery
+
+##### Frontend
+- HTML
+- CSS
+- JavaScript
+- Bootstrap
 
 ---
 ### Rules
